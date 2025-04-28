@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Hero's Road: Elder Scrolls IV Oblivion Quest Guide</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- FontAwesome for icons -->
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" rel="stylesheet">
+  <!-- Cinzel and Cardo font families for that Elder Scrolls look -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cardo:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      color: #352616;
+      font-family: 'Cardo', serif;
+      background: #ece3d1 url('https://images2.alphacoders.com/180/18080.jpg') top center/cover no-repeat fixed;
+      /* Parchment-like background */
+    }
+    .oblivion-frame {
+      border: 8px solid #7c5c40;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px 0 rgba(61,45,22,0.25), 0 0 0 8px rgba(236,219,170,0.4) inset;
+      background: rgba(255,251,236,0.93);
+    }
+    .header-shadow {
+      text-shadow: 0 3px 8px #dbc6a4, 0 0 1px #000;
+    }
+    .quest-section.active {
+      background: linear-gradient(90deg, #f2e5c2 60%, #e5d7b6 100%);
+      border-color: #994e26;
+      transition: box-shadow 0.2s, border-color 0.2s, background 0.2s;
+      box-shadow: 0 0 16px 1px #cfa86b;
+    }
+    .quest-section {
+      border-left: 6px solid #9d7c50;
+      background: #f8f4e9;
+      margin-bottom: 2rem;
+      padding-right: 0.5rem;
+      transition: background 0.2s, border-color 0.2s;
+      page-break-inside: avoid;
+    }
+    .daedric {
+      color: #701d1d;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.03em;
+    }
+    .faction {
+      color: #2c4d5e;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    .divider {
+      border: none;
+      border-top: 2px solid #d3cbb3;
+      margin: 1.5rem 0;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 0px;
+      background: transparent; /* hide scrollbar for print/continuous */
+    }
+    /* Remove scrollbars for PDF-export scroll-free design */
+    .custom-scroll {
+      overflow: visible !important;
+      max-height: none !important;
+    }
+    /* Level slider style */
+    .range-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 260px;
+      height: 10px;
+      background: linear-gradient(90deg, #7a573d 0%, #ceb989 100%);
+      border-radius: 8px;
+      outline: none;
+      margin: 0 8px;
+      transition: background 0.2s;
+    }
+    .range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #a17549;
+      border: 3px solid #fff0d0;
+      box-shadow: 0 2px 8px #684625aa;
+      cursor: pointer;
+      transition: background 0.2s, border 0.2s;
+    }
+    .range-slider::-moz-range-thumb {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #a17549;
+      border: 3px solid #fff0d0;
+      box-shadow: 0 2px 8px #684625aa;
+      cursor: pointer;
+      transition: background 0.2s, border 0.2s;
+    }
+    /* for reusable printing and screen consistency */
+    @media print {
+      html, body {
+        background: transparent !important;
+      }
+      .oblivion-frame {
+        box-shadow: none !important;
+      }
+      .range-slider, .range-label {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="flex flex-col items-center min-h-screen py-8 px-2">
+    <div class="oblivion-frame max-w-5xl w-full p-8 md:p-11 custom-scroll">
+      <!-- Header Section -->
+      <header class="mb-7 flex flex-col items-center">
+        <h1 class="header-shadow text-4xl md:text-5xl font-serif font-bold tracking-wide text-center" style="font-family:'Cinzel',serif;color:#8a582b;">
+          <span class="relative"><i class="fas fa-crown mr-4 text-yellow-600"></i>The Hero’s Road<br>
+          <span class="text-lg md:text-2xl block font-normal tracking-normal mt-2" style="color:#4e371f;font-family:'Cardo',serif;">Oblivion IV Master Quest Guide</span>
+          </span>
+        </h1>
+        <span class="block mt-1 text-base md:text-lg font-semibold tracking-widest text-gray-700 uppercase" style="letter-spacing: 0.12em">Remastered Dashboard</span>
+        <hr class="divider w-1/2 md:w-2/5 mt-4 mb-2">
+        <p class="text-center text-lg max-w-2xl mt-2 mb-1 font-light text-gray-700">
+          Your complete journey through Cyrodiil: optimal path, key Daedric artifacts, and all major quest rewards—beautifully organized for play and mastery.
+        </p>
+      </header>
+
+      <!-- Level Range Bar -->
+      <section class="flex items-center justify-center gap-3 md:gap-8 mb-10">
+        <i class="fas fa-level-up-alt text-2xl text-yellow-700"></i>
+        <span class="font-bold range-label" id="level-preview" style="font-family:'Cinzel',serif; letter-spacing:0.04em; color:#88532a;">Level&nbsp;<span id="level-value">1</span></span>
+        <input type="range" class="range-slider" min="1" max="30" value="1" id="level-range" />
+        <span class="text-xs md:text-sm text-gray-600 italic">Jump to your current hero level</span>
+      </section>
+
+      <!-- Main Quest Sections -->
+      <div id="quest-guide">
+
+        <section class="quest-section px-3 py-4 rounded-lg mb-8 border-l-4" data-min="1" data-max="5" id="lvl1-5">
+          <h2 class="text-2xl font-bold mb-2" style="font-family:'Cinzel',serif;color:#7a573d;">
+            <i class="fas fa-boot"></i> Levels 1–5: <span class="faction">Foundations</span>
+          </h2>
+          <ul class="list-disc pl-6 text-base space-y-1">
+            <li>Complete <span class="faction">tutorial</span>, deliver Amulet of Kings to Jauffre (<span class="font-semibold">free Paint Horse</span> & early fast travel).</li>
+            <li>Join the <span class="faction">Arena</span>. Win matches for fast gold (~500 per win) & <span class="font-semibold">Champion’s Raiment</span> (solid starting armor).</li>
+            <li>Visit each <span class="faction">Mages Guild</span> for recommendations. Complete at least five to access <span class="font-semibold">Arcane University</span> (unlocks enchanting, spell-making).</li>
+            <li>Commit murder to get Lucien Lachance’s invitation—join the <span class="faction">Dark Brotherhood</span> early for <span class="font-semibold">Shrouded Armor</span> and stealth rewards.</li>
+            <li>Speak to the beggar at Imperial Waterfront (midnight): unlock <span class="faction">Thieves Guild</span> for fencing stolen loot.</li>
+            <li class="daedric">Dawn/dusk near Cheydinhal, offer Glow Dust at <span class="font-semibold">Azura’s Shrine</span>. Reward: <span class="font-semibold">Azura’s Star</span> (reusable Grand Soul Gem).</li>
+            <li>Help defend <span class="faction">Kvatch</span> (~level 5–10) before random gates spawn for smoother scaling.</li>
+          </ul>
+        </section>
+
+        <section class="quest-section px-3 py-4 rounded-lg mb-8 border-l-4" data-min="6" data-max="10" id="lvl6-10">
+          <h2 class="text-2xl font-bold mb-2" style="font-family:'Cinzel',serif;color:#7a573d;">
+            <i class="fas fa-hat-wizard"></i> Levels 6–10: <span class="daedric">Early Questlines & Artifacts</span>
+          </h2>
+          <ul class="list-disc pl-6 text-base space-y-1">
+            <li>Advance guild ranks via deliveries & rat hunts—train combat and reach halfway status by level 10.</li>
+            <li>Start <span class="faction">Mages Guild Necromancer</span> quest arc (recommended levels 8–10).</li>
+            <li class="daedric">Retrieve the Eye of Nocturnal: get <span class="font-semibold">Skeleton Key</span> (unbreakable lockpick, +40 Security).</li>
+            <li class="daedric">With Personality ≤20, complete Namira’s quest: obtain <span class="font-semibold">Ring of Namira</span> (major damage reflect).</li>
+            <li class="daedric">Clear the Ruin for Meridia: reward is <span class="font-semibold">Ring of Khajiiti</span> (chameleon & speed).</li>
+            <li>Begin <span class="faction">Knights of the Nine</span> pilgrimage for <span class="font-semibold">Boots of the Crusader</span> (+calm creatures).</li>
+          </ul>
+        </section>
+
+        <section class="quest-section px-3 py-4 rounded-lg mb-8 border-l-4" data-min="11" data-max="15" id="lvl11-15">
+          <h2 class="text-2xl font-bold mb-2" style="font-family:'Cinzel',serif;color:#7a573d;">
+            <i class="fas fa-dragon"></i> Levels 11–15: <span class="faction">Mid-Game Climax</span>
+          </h2>
+          <ul class="list-disc pl-6 text-base space-y-1">
+            <li>Finish lawful guild quests; embrace the <span class="faction">Thieves/Dark Brotherhood</span> side for endgame perks.</li>
+            <li class="faction">Fighters Guild:</span> finish Blackwood plotline for <span class="font-semibold">Helm of Oreyn Bearclaw</span> (+Agility/Endurance).</li>
+            <li class="faction">Mages Guild:</span> defeat Mannimarco and claim <span class="font-semibold">Arch-Mage rank</span> and spell perks.</li>
+            <li class="faction">Thieves Guild:</span> pull off the <span class="font-semibold">Ultimate Heist</span> (Gray Cowl = Detect Life, Feather bonus).</li>
+            <li class="faction">Dark Brotherhood:</span> become <span class="font-semibold">Listener</span>; earn Night Mother’s Blessings & <span class="font-semibold">Shadowmere</span>.</li>
+            <li class="daedric">Mephala: Win the Bleaker’s Way feud for <span class="font-semibold">Ebony Blade</span> (Absorb Health sword).</li>
+            <li class="daedric">Mehrunes Dagon: Plunder Varsa Baalim for <span class="font-semibold">Mehrunes’ Razor</span> (insta-kill dagger).</li>
+          </ul>
+        </section>
+
+        <section class="quest-section px-3 py-4 rounded-lg mb-8 border-l-4" data-min="16" data-max="20" id="lvl16-20">
+          <h2 class="text-2xl font-bold mb-2" style="font-family:'Cinzel',serif;color:#7a573d;">
+            <i class="fas fa-shield-alt"></i> Levels 16–20: <span class="faction">Late-Game Preparation</span>
+          </h2>
+          <ul class="list-disc pl-6 text-base space-y-1">
+            <li>Finish remaining <span class="daedric">Daedric quests</span> (Boethiah, Clavicus, Molag Bal, Hircine); prep for 14 artifact collection.</li>
+            <li>Cross Niben for <span class="faction">Shivering Isles</span> but delay finale till level 25+ for best rewards.</li>
+            <li>Close the <span class="faction">Bruma Great Gate</span> (level 20 keeps allies competitive); retrieve the Sigil Stone.</li>
+            <li>Complete <span class="faction">KotN</span> storyline to resync relics after level-ups.</li>
+          </ul>
+        </section>
+        
+        <section class="quest-section px-3 py-4 rounded-lg mb-8 border-l-4" data-min="21" data-max="30" id="lvl21-30">
+          <h2 class="text-2xl font-bold mb-2" style="font-family:'Cinzel',serif;color:#7a573d;">
+            <i class="fas fa-crown"></i> Levels 21–30+: <span class="daedric">Endgame & Isles</span>
+          </h2>
+          <ul class="list-disc pl-6 text-base space-y-1">
+            <li>Reforge gear to max stats—legendary Daedric powers unlocked.</li>
+            <li>Finish <span class="faction">Shivering Isles</span> endgame for <span class="font-semibold">Madgod</span> title.</li>
+            <li><span class="daedric">Hermaeus Mora:</span> after all Prince quests/artifact sacrifices, obtain +10 skill tome.</li>
+            <li>Complete side quests, customize estates, and bask in your many heroic titles: <span class="italic text-yellow-800">Hero, Arch-Mage, Listener, Gray Fox, Divine Crusader, Madgod.</span></li>
+          </ul>
+        </section>
+
+      </div>
+      <!-- End Main Guide -->
+      <hr class="divider">
+
+      <!-- Tips and Credits Section -->
+      <section class="mt-6">
+        <h3 class="text-xl font-semibold mb-2" style="font-family:'Cinzel',serif; color:#88643f;"><i class="fas fa-scroll"></i> Cyrodiil Wisdom & Export Reminders</h3>
+        <ul class="list-disc pl-6 text-base space-y-1 text-gray-700">
+          <li>Use the level slider at the top to highlight the most relevant quest sections for your current progression.</li>
+          <li>This dashboard is designed for seamless PDF export via your browser's print functionality (<span class="italic">no extra buttons, just use your browser menu</span>).</li>
+          <li>For comprehensive checklists, faction walkthroughs, and maps, customize and print as desired.</li>
+        </ul>
+        <p class="text-sm text-right text-gray-400 mt-6">Design inspired by Oblivion UI and Elder Scrolls community art.</p>
+      </section>
+    </div>
+  </div>
+  <script>
+    const slider       = document.getElementById('level-range');
+    const levelValue   = document.getElementById('level-value');
+    const questSections = document.querySelectorAll('.quest-section');
+  
+    function highlightSections (currentLevel) {
+      questSections.forEach(sec => {
+        const min = +sec.dataset.min;
+        const max = +sec.dataset.max;
+        sec.classList.toggle('active', currentLevel >= min && currentLevel <= max);
+        if (sec.classList.contains('active')) {
+          sec.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      });
+    }
+  
+    /* live number update while dragging */
+    slider.addEventListener('input', () => {
+      levelValue.textContent = slider.value;
+    });
+  
+    /* jump only after user releases the thumb */
+    slider.addEventListener('change', () => {
+      highlightSections(+slider.value);
+    });
+  
+    /* initial state */
+    document.addEventListener('DOMContentLoaded', () => {
+      highlightSections(+slider.value);
+    });
+  </script>
+</body>
+</html>
+
